@@ -20,8 +20,8 @@ class EnderecoModel(Base):
 class UsuarioModel(Base):
     __tablename__ = 'usuarios'
     
-    id:       Mapped[int] = mapped_column(primary_key=True)
-    nome:     Mapped[str] = mapped_column(String(30))
-    senha_has:Mapped[str] = mapped_column(String(255))
-    email:    Mapped[str] = mapped_column(String(255), unique=True, index=True)
-    endereco: Mapped['EnderecoModel'] = relationship(back_populates='usuario',uselist=False)
+    id:        Mapped[int] = mapped_column(primary_key=True)
+    nome:      Mapped[str] = mapped_column(String(30))
+    senha_hash:Mapped[str] = mapped_column(String(255))
+    email:     Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    endereco:  Mapped['EnderecoModel'] = relationship(back_populates='usuario',uselist=False)

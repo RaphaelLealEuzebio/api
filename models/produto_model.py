@@ -13,6 +13,6 @@ class ProdutoModel(Base):
     id:           Mapped[int] = mapped_column(primary_key=True)
     nome:         Mapped[str] = mapped_column(String(50))
     valor:        Mapped[float] = mapped_column(Float(50))
-    descricao:    Mapped[str] = mapped_column(Text(255))
+    descricao:    Mapped[str] = mapped_column(String(255))
     data_criacao: Mapped[datetime] = mapped_column(DateTime())
     usuario_id:   Mapped[int] = mapped_column(ForeignKey('usuarios.id'))

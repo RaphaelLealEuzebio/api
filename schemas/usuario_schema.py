@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr
 
 class EnderecoSchema(BaseModel):
     rua:    str
@@ -13,13 +13,21 @@ class UsuarioRequest(BaseModel):
     nome:      str
     email:     EmailStr
     endereco : EnderecoSchema
-    produto:   str
+    senha: str
 
 class UsuarioResponse(BaseModel):
     nome:     str
     email:    EmailStr
-    produto:  str
     createat: datetime
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    senha: str
+
+class TokenResponse(BaseModel):
+    acess_token: str
+    token_type: str = 'bearer'
+
     
 
     
