@@ -27,4 +27,11 @@ class UsuarioRepository:
 
             return usuario
         except DatabaseError as error:
-           logger.error(f'Erro ao deleter o usuario{error}') 
+           logger.error(f'Erro ao deleter o usuario{error}')
+           
+    def buscar_usuario(self, email: str)-> UsuarioModel | None:
+        try:
+            usuario = self.db.query(UsuarioModel).filter_by(email=email).first()
+            return usuario
+        except DatabaseError as error:
+            logger.error(f'Usuario nao encontrado: {error}')
