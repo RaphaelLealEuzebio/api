@@ -1,6 +1,9 @@
+from datetime import date
+
 from sqlalchemy import ForeignKey, Integer, String
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.orm import mapped_column
+from sqlalchemy.types import Date
 
 from core.database_core import Base
 
@@ -20,8 +23,10 @@ class EnderecoModel(Base):
 class UsuarioModel(Base):
     __tablename__ = 'usuarios'
     
-    id:        Mapped[int] = mapped_column(primary_key=True)
-    nome:      Mapped[str] = mapped_column(String(30))
-    senha_hash:Mapped[str] = mapped_column(String(255))
-    email:     Mapped[str] = mapped_column(String(255), unique=True, index=True)
-    endereco:  Mapped['EnderecoModel'] = relationship(back_populates='usuario',uselist=False)
+    id:              Mapped[int] = mapped_column(primary_key=True)
+    nome:            Mapped[str] = mapped_column(String(30))
+    cpf:             Mapped[str] = mapped_column(String(11))
+    data_nascimento: Mapped[date] = mapped_column(Date)
+    senha_hash:      Mapped[str] = mapped_column(String(255))
+    email:           Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    endereco:        Mapped['EnderecoModel'] = relationship(back_populates='usuario',uselist=False)
