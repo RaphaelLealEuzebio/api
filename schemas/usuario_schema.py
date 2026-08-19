@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from pydantic import BaseModel, EmailStr
 
@@ -10,10 +10,12 @@ class EnderecoSchema(BaseModel):
     pais:   str
 
 class UsuarioRequest(BaseModel):
-    nome:      str
-    email:     EmailStr
-    endereco : EnderecoSchema
-    senha: str
+    nome:            str
+    cpf:             str
+    data_nascimento: date
+    email:           EmailStr
+    endereco :       EnderecoSchema
+    senha:           str
 
 class UsuarioResponse(BaseModel):
     nome:     str
